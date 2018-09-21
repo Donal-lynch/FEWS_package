@@ -1,0 +1,25 @@
+Package: FEWS
+Type: Package
+Title: Package to calculate Fixed Effects indexes with various splice options
+Version: 0.1.0.9000
+Author: D Lynch <donal.lynch@stats.govt.nz>
+Maintainer: D Lynch <donal.lynch@stats.govt.nz>
+Description: Provides a selection of functions which calculate the fixed
+    effects index over a window, and splices the results together.
+    The functions have the option to be run in parallel using
+    the doSNOW package.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.0
+Imports:
+  methods,
+  stats,
+  utils,
+  dplyr,
+  jsonlite,
+  MatrixModels,
+  foreach
+Suggests:
+  doSNOW,
+  snow
