@@ -8,7 +8,7 @@ Description: Provides a selection of functions which calculate the fixed
     effects index over a window, and splices the results together.
     The functions have the option to be run in parallel using
     the doSNOW package.
-License: GPL-3
+License: GPL-3 | file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.0
