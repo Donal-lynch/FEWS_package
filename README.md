@@ -7,11 +7,11 @@ The FEWS method was introduced by Frances Krsinich in [title](www.google.com). T
 Installation
 ============
 
-FEWS is still in development, with the intention that it will exist on CRAN.
+FEWS is still in development, with the intention that it will exist on CRAN. For now it can be installed from GitHub using the following code
 
 ``` r
 
-# install.packages("FEWS")
+devtools::install_github("Donal-lynch/FEWS_package")
 ```
 
 Usage
