@@ -10,6 +10,17 @@ check_inputs <- function (times = times, logprice = logprice, id = id,
   }
 
 
+  if (anyNA(times) | anyNA(logprice) | anyNA(id) | anyNA(weight)){
+    stop("Data contains NA values")
+  }
+
+  if (any(c(is.infinite(times),
+            is.infinite(logprice),
+            is.infinite(weight)))){
+    stop("Data contains Infinite values")
+  }
+
+
   if (length(times) != length(logprice)){
     stop("times and logprice should be vectors of the same length")
   }else if (length(times) != length(id)){

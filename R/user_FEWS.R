@@ -116,7 +116,6 @@ FEWS <-  function(times, logprice, id, window_length, weight = NULL,
   prices.df <- prices.df %>%
     mutate(times_index = as.numeric(as.factor(times)))
 
-
   # Get the indexes of the start of each window
   window_st_days <- get_window_st_days (dframe = prices.df,
                                         window_length = window_length)
@@ -129,10 +128,10 @@ FEWS <-  function(times, logprice, id, window_length, weight = NULL,
       (requireNamespace("doSNOW", quietly = TRUE))&
       (requireNamespace("snow", quietly = TRUE))) {
     # Starting Parallel =======================================================
+    cat("Initialising cores for parallel...\n")
     cores <- num_cores
     cl <- snow::makeSOCKcluster(cores)
     doSNOW::registerDoSNOW(cl)
-
 
     rqd_packs <- c("dplyr", "MatrixModels")
     rqd_data <- c("FE_model", "lmfun", "get_win_dates")
@@ -206,7 +205,7 @@ FEWS <-  function(times, logprice, id, window_length, weight = NULL,
                           splice_pos = splice_pos)
 
 
-  cat("\nFinished. It took", round(Sys.time() - timer, 2), "seconds\n\n\n")
+  cat("\nFinished. It took", round(Sys.time() - timer, 2), "seconds\n\n")
 
   # Wrap the output in a list and return
   list(fews = fews_df,
