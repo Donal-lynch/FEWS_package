@@ -206,13 +206,15 @@ index_2_movement <- function(index){
 #' @export
 movement_2_index <- function(movement){
 
-
   # Check for any NA values
   if (any(is.na(movement))){
     stop("the index supplied contains an NA value")
   }
 
-  cumprod(c(1, movement))
+  mv <- cumprod(c(1, movement))
+
+  # convert to monthly change percent
+  (mv - 1) * 100
 }
 
 
