@@ -60,7 +60,7 @@ get_diagnostics <- function (dframe){
     summarise(n = n()) %>%
     pull(n)
 
-  data.frame(contrib_rids_pc = mean(entries_per_rid > 1) * 100,
+  data.frame(contrib_rids_pc = mean(entries_per_rid > 1),
              contrib_rids_nm = sum(entries_per_rid > 1),
              total_rids_in_data = nlevels(dframe$id),
              total_rids_in_window = length(entries_per_rid),
