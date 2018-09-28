@@ -183,12 +183,13 @@ index_2_movement <- function(index){
   }
 
   # Divide each index by the following value
-  temp <- lead(index) / index
+  mv <- temp <- lead(index) / index
 
   # Remove the last value which is now an NA
-  head (temp, -1)
+  mv <- head (temp, -1)
 
-
+  # convert to monthly change percent
+  (mv - 1) * 100
 }
 
 #' Price movements Index levels
@@ -211,10 +212,8 @@ movement_2_index <- function(movement){
     stop("the index supplied contains an NA value")
   }
 
-  mv <- cumprod(c(1, movement))
+  cumprod(c(1, movement))
 
-  # convert to monthly change percent
-  (mv - 1) * 100
 }
 
 
