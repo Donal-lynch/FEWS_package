@@ -80,8 +80,23 @@ lmfun <- function(dframe){
   #   dframe - a dframe frame with logprices, weights and id's
   # Returns
   #   modelOutput - the output of the linear model
+  
+  # A cryptic error is thrown if there is a time period which has no id's whcih
+  # are present in other id's. Doing a test for this, and giving a more sensible
+  # error. To solve this either remove the offending time period or impute
+  ids_more_than_1 <- dframe$id[duplicated(dframe$id)]
+  id_counts <- group_by(dframe, times) %>%
+    summarise(unq = mean(id %in% ids_more_than_1))
 
-
+  if (any(id_counts$unq == 0)){
+    bad_times <- id_counts %>%
+      filter(unq == 0) %>%
+      pull(times)
+    stop("One or more time periods have only got ids which occur at no other ",
+         "time periods. The offending time periods are: \n",
+         paste(bad_times, collapse = ", "))
+  }
+  
   diagnostics <- get_diagnostics(dframe)
 
   # Refactor the dates here. Otherwise columns are created in the regression
